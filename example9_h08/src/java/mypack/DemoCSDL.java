@@ -19,10 +19,13 @@ public class DemoCSDL extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        //===
         Region region = new Region();
         for(Region r:region.showAllRegion()){
             out.print(r.getRegionID()+" "+r.getRegionDescription()+"<br/>");
         }
+        //== Product
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
