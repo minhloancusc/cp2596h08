@@ -7,11 +7,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  *
@@ -24,19 +19,9 @@ public class DemoCSDL extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=northwind;encrypt=false ", "sa", "sqladmin");
-            String sql = "select RegionID,RegionDescription from Region";
-            PreparedStatement pstm = conn.prepareStatement(sql);
-            ResultSet rs = pstm.executeQuery();
-            while(rs.next()){
-                out.print(rs.getInt("RegionID")+" "+rs.getString("RegionDescription")+"<br/>");
-            }
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        } catch (SQLException ex) {
-            System.out.println(ex);
+        Region region = new Region();
+        for(Region r:region.showAllRegion()){
+            out.print(r.getRegionID()+" "+r.getRegionDescription()+"<br/>");
         }
     }
 
