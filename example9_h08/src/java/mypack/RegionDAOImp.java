@@ -25,6 +25,7 @@ public class RegionDAOImp implements RegionDAO{
                 Region r = new Region(rs.getInt("RegionID"), rs.getString("RegionDescription"));
                 listRegion.add(r);
             }
+            conn.close();
             return listRegion;
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -44,17 +45,46 @@ public class RegionDAOImp implements RegionDAO{
 
     @Override
     public void insertRegion(Region r) {
-        
+        try {
+            Connection conn = MyConnection.getConnection();
+            String sql = "insert into Region (RegionID,RegionDescription) values (?,?)";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, r.getRegionID());
+            pstm.setString(2, r.getRegionDescription());
+            pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }        
     }
 
     @Override
     public void editRegion(Region r) {
-        
+        try {
+            Connection conn = MyConnection.getConnection();
+            String sql = "update Region set RegionDescription=? where RegionID=?";
+            PreparedStatement pstm = conn.prepareStatement(sql);            
+            pstm.setString(1, r.getRegionDescription());
+            pstm.setInt(2, r.getRegionID());
+            pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override
     public void deleteRegion(int id) {
-        
+        try {
+            Connection conn = MyConnection.getConnection();
+            String sql = "delete Region where RegionID = ?";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, id);
+            pstm.executeUpdate();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 
 }
