@@ -32,8 +32,8 @@
                 <tr>
                     <td><%= r.getRegionID()%></td>
                     <td><%= r.getRegionDescription()%></td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <td><a href="regioncontroller?action=edit&idregion=<%= r.getRegionID()%>">Edit</a></td>
+                    <td><a href="regioncontroller?action=delete&idregion=<%= r.getRegionID()%>">Delete</a></td>
                 </tr>
                 <%}%>
             </tbody>

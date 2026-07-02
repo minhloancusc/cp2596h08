@@ -14,15 +14,19 @@ import java.util.List;
  *
  * @author minhloan
  */
-@WebServlet(name = "DemoCSDL", urlPatterns = {"/DemoCSDL"})
-public class DemoCSDL extends HttpServlet {
+@WebServlet(name = "RegionController", urlPatterns = {"/regioncontroller"})
+public class RegionController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        //===
         RegionDAO region = new RegionDAOImp();
+        
+        if(request.getParameter("action")!=null && request.getParameter("action").equals("delete")){
+            region.deleteRegion(Integer.parseInt(request.getParameter("idregion")));
+        }
+        //View       
         List<Region> listRegion = region.showAllRegion();
         request.setAttribute("listRegion", listRegion);
         

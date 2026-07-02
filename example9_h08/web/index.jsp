@@ -13,6 +13,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <a href="login.jsp">Login</a> <br/>        
+        <a href="login.jsp">Login</a> <br/>
+        <a href="regioncontroller"> Region Controller</a> <br/>
     </body>
 </html>
