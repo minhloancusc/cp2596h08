@@ -23,7 +23,9 @@ public class LoginProcess extends HttpServlet {
         //Nhan gia tri
         String uname = request.getParameter("username");
         String pword = request.getParameter("password");
-        if(uname.equals("admin")&&pword.equals("123")){            
+        EmployeesDAO emp = new EmployeesDAOImp();
+        if(emp.checkLogin(uname, pword)!=null){
+        //if(uname.equals("admin")&&pword.equals("123")){            
             //Session
             HttpSession session = request.getSession(true);
             session.setAttribute("username", uname);

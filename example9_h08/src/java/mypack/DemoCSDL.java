@@ -1,5 +1,6 @@
 package mypack;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -7,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -20,11 +22,16 @@ public class DemoCSDL extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         //===
-        Region region = new Region();
-        for(Region r:region.showAllRegion()){
-            out.print(r.getRegionID()+" "+r.getRegionDescription()+"<br/>");
-        }
-        //== Product
+        RegionDAO region = new RegionDAOImp();
+        List<Region> listRegion = region.showAllRegion();
+        request.setAttribute("listRegion", listRegion);
+        
+        RequestDispatcher dis = getServletContext().getRequestDispatcher("/region.jsp");
+        dis.forward(request, response);
+        
+//        for(Region r:region.showAllRegion()){
+//            out.print(r.getRegionID()+" "+r.getRegionDescription()+"<br/>");
+//        }        
         
     }
 
