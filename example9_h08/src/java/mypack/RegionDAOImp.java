@@ -77,10 +77,11 @@ public class RegionDAOImp implements RegionDAO{
     public void deleteRegion(int id) {
         try {
             Connection conn = MyConnection.getConnection();
-            String sql = "delete Region where RegionID = ?";
+            String sql = "delete Region where RegionID=?";            
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setInt(1, id);
-            pstm.executeUpdate();
+            int i = pstm.executeUpdate();            
+            System.out.println("Delete thanh cong");
             conn.close();
         } catch (SQLException ex) {
             System.out.println(ex);

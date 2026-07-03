@@ -23,8 +23,16 @@ public class RegionController extends HttpServlet {
         PrintWriter out = response.getWriter();
         RegionDAO region = new RegionDAOImp();
         
+//Insert
+        if(request.getParameter("btnAdd")!=null){
+            Region r = new Region(Integer.parseInt(request.getParameter("regionID")), request.getParameter("regionDescription"));
+            region.insertRegion(r);
+        }
+//Delete        
         if(request.getParameter("action")!=null && request.getParameter("action").equals("delete")){
-            region.deleteRegion(Integer.parseInt(request.getParameter("idregion")));
+            if(request.getParameter("id")!=null){                
+                region.deleteRegion(Integer.parseInt(request.getParameter("id")));
+            }
         }
         //View       
         List<Region> listRegion = region.showAllRegion();

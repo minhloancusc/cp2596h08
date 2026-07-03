@@ -15,6 +15,34 @@
     </head>
     <body>
         <h1>Region</h1>
+        <form method="POST" action="regioncontroller">
+            <table border="0">
+                <thead>
+                    <tr>
+                        <th colspan="2">Region Form</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Region ID</td>
+                        <td><input type="text" name="regionID" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Region Description</td>
+                        <td><input type="text" name="regionDescription" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Add" name="btnAdd" />
+                            <input type="reset" value="Reset" name="btnReset" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </form>
+<!--View-->
         <%
             List<Region> listRegion = (List<Region>) request.getAttribute("listRegion");
         %>
@@ -32,8 +60,8 @@
                 <tr>
                     <td><%= r.getRegionID()%></td>
                     <td><%= r.getRegionDescription()%></td>
-                    <td><a href="regioncontroller?action=edit&idregion=<%= r.getRegionID()%>">Edit</a></td>
-                    <td><a href="regioncontroller?action=delete&idregion=<%= r.getRegionID()%>">Delete</a></td>
+                    <td><a href="regioncontroller?action=edit&id=<%= r.getRegionID()%>">Edit</a></td>
+                    <td><a href="regioncontroller?action=delete&id=<%= r.getRegionID()%>">Delete</a></td>
                 </tr>
                 <%}%>
             </tbody>
