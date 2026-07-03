@@ -30,6 +30,10 @@ public class RegionController extends HttpServlet {
                 request.setAttribute("editRegion",editRegion);
             }
         }
+        if(request.getParameter("btnEdit")!=null){
+            Region r = new Region(Integer.parseInt(request.getParameter("regionID")), request.getParameter("regionDescription"));
+            region.editRegion(r);
+        }
         
 //Insert
         if(request.getParameter("btnAdd")!=null){

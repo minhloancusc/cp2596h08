@@ -83,6 +83,7 @@ public class RegionDAOImp implements RegionDAO{
             pstm.setInt(2, r.getRegionID());
             pstm.executeUpdate();
             conn.close();
+            System.out.println("Update thanh cong");
         } catch (SQLException ex) {
             System.out.println(ex);
         }
