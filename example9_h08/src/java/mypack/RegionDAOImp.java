@@ -40,7 +40,22 @@ public class RegionDAOImp implements RegionDAO{
 
     @Override
     public Region findRegionbyID(int id) {
-        return null;
+        Region region = null;
+        try {            
+            Connection conn = MyConnection.getConnection();
+            String sql = "select RegionID,RegionDescription from Region where RegionID=?";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, id);
+            ResultSet rs = pstm.executeQuery();
+            if(rs.next()){
+                region = new Region(rs.getInt("RegionID"), rs.getString("RegionDescription"));              
+            }
+            conn.close();
+            return region;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return region;
     }
 
     @Override

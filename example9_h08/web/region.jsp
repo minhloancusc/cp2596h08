@@ -15,6 +15,12 @@
     </head>
     <body>
         <h1>Region</h1>
+        <%
+            Region editRegion = null;
+            if(request.getAttribute("editRegion")!=null){
+                editRegion = (Region)request.getAttribute("editRegion");                
+            }
+        %>
         <form method="POST" action="regioncontroller">
             <table border="0">
                 <thead>
@@ -25,16 +31,16 @@
                 <tbody>
                     <tr>
                         <td>Region ID</td>
-                        <td><input type="text" name="regionID" value="" /></td>
+                        <td><input type="text" name="regionID" value="<%=((editRegion!=null)?editRegion.getRegionID():"") %>" /></td>
                     </tr>
                     <tr>
                         <td>Region Description</td>
-                        <td><input type="text" name="regionDescription" value="" /></td>
+                        <td><input type="text" name="regionDescription" value="<%=((editRegion!=null)?editRegion.getRegionDescription():"") %>" /></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <input type="submit" value="Add" name="btnAdd" />
+                            <input type="submit" value="<%=((editRegion!=null)?"Edit":"Add") %>" name="<%=((editRegion!=null)?"btnEdit":"btnAdd") %>" />
                             <input type="reset" value="Reset" name="btnReset" />
                         </td>
                     </tr>

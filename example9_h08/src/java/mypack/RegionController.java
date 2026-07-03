@@ -22,6 +22,14 @@ public class RegionController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         RegionDAO region = new RegionDAOImp();
+
+//Edit
+        if(request.getParameter("action")!=null && request.getParameter("action").equals("edit")){
+            if(request.getParameter("id")!=null){  
+                Region editRegion = region.findRegionbyID(Integer.parseInt(request.getParameter("id")));
+                request.setAttribute("editRegion",editRegion);
+            }
+        }
         
 //Insert
         if(request.getParameter("btnAdd")!=null){
