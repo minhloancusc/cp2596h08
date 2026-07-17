@@ -13,6 +13,7 @@
     </head>
     <body>
         <h1>Admin-Dashboard</h1>
-        <a href="region.jsp">Region</a>
+        <a href="region.jsp">Region</a> <br/>
+        <a href="demoi18n.jsp">Demo i18n</a>
     </body>
 </html>
