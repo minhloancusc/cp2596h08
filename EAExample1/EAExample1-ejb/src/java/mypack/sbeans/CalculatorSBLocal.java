@@ -1,0 +1,20 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/J2EE/EJB40/SessionLocal.java to edit this template
+ */
+package mypack.sbeans;
+
+import jakarta.ejb.Local;
+
+/**
+ *
+ * @author minhloan
+ */
+@Local
+public interface CalculatorSBLocal {
+
+    double sum(double a, double b);
+
+    double div(double a, double b);
+    
+}
